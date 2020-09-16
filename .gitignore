@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+mastermind
+
+# Folders
+.vscode/
+Release/
+Debug/
