@@ -29,15 +29,46 @@ code_t code_breaker::_set_a_code(state_t value)
         _right_colors.push_back(static_cast<color>(static_cast<int>(_current_color) - 1)); //! The algorithm gets here after increasing color
         _num_colors++;
     }
-    code_t code(_current_color, _current_color, _current_color, _current_color);
-    color *ptrToCode = static_cast<color *>(&code.peg1);
-    int i = 0;
-    for (auto it=_right_colors.begin(); it<_right_colors.end(); it++)
+
+    if (_num_colors == 4)
     {
-        ptrToCode[i] = *it;
-        i = i%4+1; //! Needed to avoid and exception as only four words are reserved for code
+        // _just_a_guess = code;
+        printf("Breaker: Trying to find the right positions!!!\n");
+        switch (value.assess.right_position)
+        {
+            case 0:
+                _best_guess <<= 1;
+                break;
+            case 1:
+                _best_guess.swap(2, 1);
+                break;
+            case 2:
+                _best_guess.swap(3, 1);
+                break;
+            case 3:
+                _best_guess.swap(2, 0);
+                break;
+            default:
+                break;
+        }
+        printf("Breaker: code = [%d, %d, %d, %d]\n", _best_guess.peg1, _best_guess.peg2, _best_guess.peg3, _best_guess.peg4);
+        _just_a_guess = _best_guess;
     }
+    else
+    {
+        _just_a_guess = code_t(_current_color, _current_color, _current_color, _current_color);
+        color *ptrToCode = static_cast<color *>(&_just_a_guess.peg1);
+        int i = 0;
+        for (auto it=_right_colors.begin(); it<_right_colors.end(); it++)
+        {
+            ptrToCode[i] = *it;
+            i = i%4+1; //! Needed to avoid and exception as only four words are reserved for code
+        }
+        _best_guess = _just_a_guess;
+    }
+
+
     //! Change color for next round
     _current_color = static_cast<color>((static_cast<int>(_current_color) + 1)%6);
-    return code;
+    return _just_a_guess;
 }

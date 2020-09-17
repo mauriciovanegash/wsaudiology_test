@@ -22,6 +22,35 @@ typedef struct _peg_code
     color peg4;
     _peg_code() : peg1(blue), peg2(blue), peg3(blue), peg4(blue) {};
     _peg_code(color p1, color p2, color p3, color p4) : peg1(p1), peg2(p2), peg3(p3), peg4(p4) {};
+
+    void swap(uint32_t index1, uint32_t index2){
+        if ((index1 > 4) || (index2 > 4))
+            return;
+        color *ptrToThis = static_cast<color *>(&this->peg1);
+        color temp = ptrToThis[index1];
+        ptrToThis[index1] = ptrToThis[index2];
+        ptrToThis[index2] = temp;
+    }
+
+    _peg_code operator <<=(int val){
+        _peg_code value = *this;
+        for (auto i=0; i<val; i++)
+        {
+            peg4 = value.peg1; peg1 = value.peg2; peg2 = value.peg3; peg3 = value.peg4;
+            value = *this;
+        }
+        return *this;
+    }
+
+    _peg_code operator >>=(int val){
+        _peg_code value = *this;
+        for (auto i=0; i<val; i++)
+        {
+            peg2 = value.peg1; peg3 = value.peg2; peg4 = value.peg3; peg1 = value.peg4;
+            value = *this;
+        }
+        return *this;
+    }
 } code_t;
 /**< code_t is of type struct _peg_code */
 /*! \struct _peg_code base_player.h "base_player.h"
