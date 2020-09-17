@@ -6,7 +6,7 @@
 /*! This enum type is used to define the possible colors in the game for the pegs */
 enum color
 {
-    yellow = 2, /*!< yellow */
+    yellow = 0, /*!< yellow */
     blue,       /*!< blue */
     red,        /*!< red */
     green,      /*!< green */
