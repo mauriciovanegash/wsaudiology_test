@@ -12,10 +12,10 @@ void code_maker::init_game(state_t value)
 void code_maker::play_round(state_t &value)
 {
     _check_code(value);
-    if (value.assess.right_position != 0)
-        printf("Maker: Got %d right positions!!!\n", value.assess.right_position);
-    if (value.assess.right_colours != 0)
-        printf("Maker: Got %d right colors!!!\n", value.assess.right_colours);
+    // if (value.assess.right_position != 0)
+    //     printf("Maker: Got %d right positions!!!\n", value.assess.right_position);
+    // if (value.assess.right_colours != 0)
+    //     printf("Maker: Got %d right colors!!!\n", value.assess.right_colours);
     _round++;
 }
 
@@ -58,7 +58,7 @@ void code_maker::_check_code(state_t &value)
         }
     }
     // At this point the number of right colors give an account
-    // of the ones in the right position and so, they need to 
+    // of the ones in the right position and so, they need to
     // be removed
     value.assess.right_colours -= value.assess.right_position;
 }

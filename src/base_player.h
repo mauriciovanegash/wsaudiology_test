@@ -51,6 +51,14 @@ typedef struct _peg_code
         }
         return *this;
     }
+
+    bool operator ==(_peg_code value) const{
+        return ((peg1 == value.peg1) && (peg2 == value.peg2) && (peg3 == value.peg3) && (peg4 == value.peg4));
+    }
+
+    bool operator !=(_peg_code value) const{
+        return ((peg1 != value.peg1) || (peg2 != value.peg2) || (peg3 != value.peg3) || (peg4 != value.peg4));
+    }
 } code_t;
 /**< code_t is of type struct _peg_code */
 /*! \struct _peg_code base_player.h "base_player.h"
@@ -66,8 +74,12 @@ typedef struct _code_comparison
     _code_comparison() : right_position(0), right_colours(0) {};
     _code_comparison(uint32_t val1, uint32_t val2) : right_position(val1), right_colours(val2) {};
 
-    bool operator ==(_code_comparison value){
-        return (right_position == value.right_position && right_colours == value.right_colours);
+    bool operator ==(_code_comparison value) const{
+        return ((right_position == value.right_position) && (right_colours == value.right_colours));
+    }
+
+    bool operator !=(_code_comparison value) const{
+        return ((right_position != value.right_position) || (right_colours != value.right_colours));
     }
 } comp_t;
 /**< comp_t is of type struct _code_comparison */

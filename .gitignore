@@ -31,8 +31,11 @@
 *.out
 *.app
 mastermind
+run_test
 
 # Folders
 .vscode/
 Release/
 Debug/
+gtest/src/
+gtest/unit_test/

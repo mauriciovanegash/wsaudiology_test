@@ -32,8 +32,6 @@ code_t code_breaker::_set_a_code(state_t value)
 
     if (_num_colors == 4)
     {
-        // _just_a_guess = code;
-        printf("Breaker: Trying to find the right positions!!!\n");
         switch (value.assess.right_position)
         {
             case 0:
@@ -51,7 +49,6 @@ code_t code_breaker::_set_a_code(state_t value)
             default:
                 break;
         }
-        printf("Breaker: code = [%d, %d, %d, %d]\n", _best_guess.peg1, _best_guess.peg2, _best_guess.peg3, _best_guess.peg4);
         _just_a_guess = _best_guess;
     }
     else
@@ -66,7 +63,6 @@ code_t code_breaker::_set_a_code(state_t value)
         }
         _best_guess = _just_a_guess;
     }
-
 
     //! Change color for next round
     _current_color = static_cast<color>((static_cast<int>(_current_color) + 1)%6);

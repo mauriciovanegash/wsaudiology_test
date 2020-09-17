@@ -33,8 +33,8 @@ ifeq (YES, ${PROFILE})
 endif
 #****************************************************************************
 # Preprocessor directives
-#**************************************************************************** 
-DEFS = 
+#****************************************************************************
+DEFS =
 #DEFS += -DRAPIDXML_NO_EXCEPTIONS
 #DEFS += -DSAVE_ROTVEL_PROFILE
 #DEFS += -DSAVE_TRANSVEL_PROFILE
@@ -42,7 +42,7 @@ DEFS =
 CXX = g++
 CXXFLAGS :=	${CXXFLAGS} ${DEFS}
 
-LIBS = 
+LIBS =
 
 #****************************************************************************
 # TARGET
@@ -58,7 +58,7 @@ BACKUP_DIR = /home/mauricio/Dropbox/C_Projects/$(TARGET)/
 
 # Add directories to the include and library paths
 INCPATH = $(DIRECTORIES)
-LIBPATH = 
+LIBPATH =
 
 # Which files to add to backups, apart from the source code
 EXTRA_FILES = Makefile
@@ -75,7 +75,7 @@ OBJECTS := $(addprefix $(STORE)/, $(SOURCE:.cpp=.o))
 DFILES := $(addprefix $(STORE)/,$(SOURCE:.cpp=.d))
 
 # Specify phony rules. These are rules that are not real files.
-.PHONY: clean backup dirs
+.PHONY: clean backup dirs gtest run_test
 
 $(TARGET): dirs $(OBJECTS)
 		@echo 'Building target: $@'
@@ -86,14 +86,14 @@ $(TARGET): dirs $(OBJECTS)
 
 $(STORE)/%.o: %.cpp
 	@echo 'Building partial codes: $^'
-	$(CXX) -Wp,-MMD,$(STORE)/$*.dd $(CXXFLAGS) $(foreach INC,$(INCPATH),-I$(INC)) -c $^ -o $@ 
+	$(CXX) -Wp,-MMD,$(STORE)/$*.dd $(CXXFLAGS) $(foreach INC,$(INCPATH),-I$(INC)) -c $^ -o $@
 	@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/$*.dd > $(STORE)/$*.d
 	@echo ' '
-	
+
 # Empty rule to prevent problems when a header is deleted.
 %.hpp: ;
 
-all:	backup $(TARGET)
+all:	backup $(TARGET) gtest
 
 # Cleans up the objects, .d files and executables.
 clean:
@@ -101,6 +101,7 @@ clean:
 	@-rm -f $(foreach DIR,$(DIRECTORIES),$(STORE)/$(DIR)/*.d $(STORE)/$(DIR)/*.dd $(STORE)/$(DIR)/*.o)
 	@-rm -f $(TARGET)
 	@echo ' '
+	$(MAKE) -C gtest clean
 
 # Backup the source files.
 backup:
@@ -116,3 +117,11 @@ endif
 dirs:
 	@-if [ ! -e $(STORE) ]; then mkdir $(STORE); fi;
 	@-$(foreach DIR,$(DIRECTORIES), if [ ! -e $(STORE)/$(DIR) ]; then mkdir $(STORE)/$(DIR); fi; )
+
+# Google-Test
+gtest:
+	$(MAKE) -C gtest
+
+# Run the test
+run_test:
+	@./gtest/run_test
