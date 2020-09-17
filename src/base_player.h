@@ -72,13 +72,13 @@ class base_player
         virtual void play_round(state_t &) = 0;
 
     protected:
-        int _round = 1;
+        int _round = 0;
 
 };
 
 /*! \class base_player base_player.h "base_player.h"
  *  \brief This is a wrap interface for a player.
- * This is a pure virtual class used to define the dependency-injection 
+ * This is a pure virtual class used to define the dependency-injection
  * pattern for the players in the Mastermind game.
  */
 
@@ -88,7 +88,7 @@ class base_player
  *  derived class is called instead.
  */
 
-/*! \fn void base_player::init_game(state_t value) 
+/*! \fn void base_player::init_game(state_t value)
  *  \brief Init game
  *  This function initialises the object according to
  *  the information in \param value.
