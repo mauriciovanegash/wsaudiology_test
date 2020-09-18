@@ -75,7 +75,7 @@ OBJECTS := $(addprefix $(STORE)/, $(SOURCE:.cpp=.o))
 DFILES := $(addprefix $(STORE)/,$(SOURCE:.cpp=.d))
 
 # Specify phony rules. These are rules that are not real files.
-.PHONY: clean backup dirs gtest run_test
+.PHONY: clean backup dirs doc gtest run_test
 
 $(TARGET): dirs $(OBJECTS)
 		@echo 'Building target: $@'
@@ -83,6 +83,8 @@ $(TARGET): dirs $(OBJECTS)
 		$(CXX) -o $(TARGET) $(OBJECTS) $(LIBS)
 		@echo 'Finished building target: $@'
 		@echo ' '
+		@echo 'Creating documentation'
+		@doxygen
 
 $(STORE)/%.o: %.cpp
 	@echo 'Building partial codes: $^'
@@ -117,6 +119,10 @@ endif
 dirs:
 	@-if [ ! -e $(STORE) ]; then mkdir $(STORE); fi;
 	@-$(foreach DIR,$(DIRECTORIES), if [ ! -e $(STORE)/$(DIR) ]; then mkdir $(STORE)/$(DIR); fi; )
+
+# Create documentation
+doc:
+	@doxygen
 
 # Google-Test
 gtest:
