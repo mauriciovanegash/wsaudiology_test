@@ -21,13 +21,11 @@ void code_maker::play_round(state_t &value)
 }
 
 /**
- * \brief Code check
- * This function compares the master code with the
- * code provided in \param value. It makes the evaluation
- * taking into consideration that the number of pegs is
- * 4, and two pegs can not have the same color in the
- * master code.
- * \param value: Reference to game state - it is of type "state_t"
+ * \brief Check code:
+ * This function checks if the code in value match the
+ * master-code. Specifically, it gives an account of
+ * the number of matches or the number of colors otherwise.
+ * \param value: A value respresenting a game state
  */
 void code_maker::_check_code(state_t &value)
 {
@@ -65,12 +63,11 @@ void code_maker::_check_code(state_t &value)
 }
 
 /**
- * \brief Color list
- * This function creates a vector with unique elements representing
- * the colors in \param value. It is used to determine how many
- * colors the "breaker player" has successfully guessed.
- * \param value: A code value of type "code_t"
- * \return a std::vector<color>
+ * \brief Create a list of unique colors:
+ * This function creates a vector with unique elements
+ * representing the colors in value
+ * \param value: A code
+ * \return std::vector<color>
  */
 std::vector<color> code_maker::_list_colors(code_t value)
 {

@@ -15,6 +15,7 @@ class code_maker: public base_player
 
     private:
         // Variables
+        //! Master-code
         code_t _key;
 
         // Functions
@@ -29,18 +30,18 @@ class code_maker: public base_player
  */
 
 /*! \fn void code_maker::init_game(state_t value)
- *  \brief Init game
+ *  \brief Init game:
  *  This function initialises the object according to
  *  the information in value.
- *  \param value: A value respresenting a game state - it is of type "state_t"
+ *  \param value: A value respresenting a game state
  */
 
 /*! \fn void code_maker::play_round(state_t &value)
- *  \brief Play round
+ *  \brief Play round:
  *  This function executes a round in the game. It purpose is to provide
  *  feedback to the player "code-breaker" regarding their code guess. The
  *  code is part of the game-state value contained in value.
- *  \param value: Reference to game state - it is of type "state_t"
+ *  \param value: Reference to game state
  */
 
 #endif // CODE_MAKER_H

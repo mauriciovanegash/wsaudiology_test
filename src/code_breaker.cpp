@@ -17,10 +17,10 @@ void code_breaker::play_round(state_t &value)
 }
 
 /**
- * \brief Strategy for guessing a code
+ * \brief Strategy for guessing a code:
  * This function implements a brute force mechanism to crack the master code.
  * It first finds the colors used in the master code and then the position.
- * \param value: Reference to game state - it is of type "state_t"
+ * \param value: Reference to game state
  * \return a code_t
  */
 code_t code_breaker::_set_a_code(state_t value)

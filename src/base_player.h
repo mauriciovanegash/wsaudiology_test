@@ -137,22 +137,22 @@ class base_player
  */
 
 /*! \fn virtual base_player::~base_player() {}
- *  \brief Destructor
+ *  \brief Destructor:
  *  It is delared as virtual in order to be sure that the destructor of any
  *  derived class is called instead.
  */
 
 /*! \fn void base_player::init_game(state_t value)
- *  \brief Init game
+ *  \brief Init game:
  *  This function initialises the object according to
  *  the information in value.
- *  \param value: A value respresenting a game state - it is of type #state_t
+ *  \param value: A value respresenting a game state
  */
 
 /*! \fn void base_player::play_round(state_t &value)
- *  \brief Play round
+ *  \brief Play round:
  *  This function executes a round in the game.
- *  \param value: Reference to game state - it is of type #state_t
+ *  \param value: Reference to game state
  */
 
 #endif // BASE_PLAYER_H
