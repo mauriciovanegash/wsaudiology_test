@@ -4,6 +4,7 @@
 void code_breaker::init_game(state_t value)
 {
     printf("Breaker: Initialising game!!!\n");
+    _round = 0;
 }
 
 void code_breaker::play_round(state_t &value)

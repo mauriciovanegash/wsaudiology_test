@@ -7,6 +7,7 @@ void code_maker::init_game(state_t value)
     printf("Maker: Initialising game!!!\n");
     printf("The KEY: [%d, %d, %d, %d]\n", value.code.peg1, value.code.peg2, value.code.peg3, value.code.peg4);
     _key = value.code;
+    _round = 0;
 }
 
 void code_maker::play_round(state_t &value)
