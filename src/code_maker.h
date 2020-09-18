@@ -28,10 +28,10 @@ class code_maker: public base_player
  * the dependency-injection pattern is defined for two main functions.
  */
 
-/*! \fn void code_maker::init_game(state_t value) 
+/*! \fn void code_maker::init_game(state_t value)
  *  \brief Init game
  *  This function initialises the object according to
- *  the information in \param value.
+ *  the information in value.
  *  \param value: A value respresenting a game state - it is of type "state_t"
  */
 
@@ -39,7 +39,7 @@ class code_maker: public base_player
  *  \brief Play round
  *  This function executes a round in the game. It purpose is to provide
  *  feedback to the player "code-breaker" regarding their code guess. The
- *  code is part of the game-state value contained in \param value.
+ *  code is part of the game-state value contained in value.
  *  \param value: Reference to game state - it is of type "state_t"
  */
 

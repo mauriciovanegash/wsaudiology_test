@@ -35,7 +35,7 @@ class code_breaker: public base_player
 /*! \fn void code_breaker::init_game(state_t value)
  *  \brief Init game
  *  This function initialises the object according to
- *  the information in \param value.
+ *  the information in value.
  *  \param value: A value respresenting a game state - it is of type "state_t"
  */
 
@@ -43,7 +43,7 @@ class code_breaker: public base_player
  *  \brief Play round
  *  This function executes a round in the game. It purpose is to provide
  *  generate a code in the light of the information provided by the code-
- *  maker in \param value. The model to crack the code is brute force!
+ *  maker in value. The model to crack the code is brute force!
  *  \param value: Reference to game state - it is of type "state_t"
  */
 
