@@ -5,7 +5,7 @@ An attempt to create a C++ implementation of the different roles in the game - a
 
 #### Dependencies
 
-This repository has two dependencies, namely: [google-test framework](https://github.com/google/googletest), and [doxigen](https://www.doxygen.nl/download.html).
+This repository has two dependencies, namely: [google-test framework](https://github.com/google/googletest), and [doxygen](https://www.doxygen.nl/download.html).
 
 #### How to use
 
