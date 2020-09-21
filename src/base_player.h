@@ -14,7 +14,7 @@ enum color
     violet      /*!< violet */
 };
 
-typedef struct _peg_code
+typedef struct peg_code
 {
     //! Defines code-color at position 1
     color peg1;
@@ -25,9 +25,9 @@ typedef struct _peg_code
     //! Defines code-color at position 4
     color peg4;
     //! Constructor
-    _peg_code() : peg1(blue), peg2(blue), peg3(blue), peg4(blue) {};
+    peg_code() : peg1(blue), peg2(blue), peg3(blue), peg4(blue) {};
     //! Constructor overload
-    _peg_code(color p1, color p2, color p3, color p4) : peg1(p1), peg2(p2), peg3(p3), peg4(p4) {};
+    peg_code(color p1, color p2, color p3, color p4) : peg1(p1), peg2(p2), peg3(p3), peg4(p4) {};
     //!  Exchanges the values at index1 and index2.
     void swap(uint32_t index1, uint32_t index2){
         if ((index1 > 4) || (index2 > 4))
@@ -38,8 +38,8 @@ typedef struct _peg_code
         ptrToThis[index2] = temp;
     }
     //! Shift-left operator
-    _peg_code operator <<=(int val){
-        _peg_code value = *this;
+    peg_code operator <<=(int val){
+        peg_code value = *this;
         for (auto i=0; i<val; i++)
         {
             peg4 = value.peg1; peg1 = value.peg2; peg2 = value.peg3; peg3 = value.peg4;
@@ -48,8 +48,8 @@ typedef struct _peg_code
         return *this;
     }
     //! Shift-right operator
-    _peg_code operator >>=(int val){
-        _peg_code value = *this;
+    peg_code operator >>=(int val){
+        peg_code value = *this;
         for (auto i=0; i<val; i++)
         {
             peg2 = value.peg1; peg3 = value.peg2; peg4 = value.peg3; peg1 = value.peg4;
@@ -58,21 +58,21 @@ typedef struct _peg_code
         return *this;
     }
     //! Equality operator
-    bool operator ==(_peg_code value) const{
+    bool operator ==(peg_code value) const{
         return ((peg1 == value.peg1) && (peg2 == value.peg2) && (peg3 == value.peg3) && (peg4 == value.peg4));
     }
     //! Inequality operator
-    bool operator !=(_peg_code value) const{
+    bool operator !=(peg_code value) const{
         return ((peg1 != value.peg1) || (peg2 != value.peg2) || (peg3 != value.peg3) || (peg4 != value.peg4));
     }
 } code_t;
-/**< code_t is of type struct _peg_code */
-/*! \struct _peg_code base_player.h "base_player.h"
+/**< code_t is of type struct peg_code */
+/*! \struct peg_code base_player.h "base_player.h"
  *  \brief This is the struct used to define a code.
  * It has four variable members representing the pegs in the game.
  */
 
-typedef struct _code_comparison
+typedef struct code_comparison
 {
     //! Defines the number of right colors in the right positions
     uint32_t right_position;
@@ -80,38 +80,38 @@ typedef struct _code_comparison
     uint32_t right_colours;
 
     //! Constructor
-    _code_comparison() : right_position(0), right_colours(0) {};
+    code_comparison() : right_position(0), right_colours(0) {};
     //! Constructor overload
-    _code_comparison(uint32_t val1, uint32_t val2) : right_position(val1), right_colours(val2) {};
+    code_comparison(uint32_t val1, uint32_t val2) : right_position(val1), right_colours(val2) {};
     //! Equality operator
-    bool operator ==(_code_comparison value) const{
+    bool operator ==(code_comparison value) const{
         return ((right_position == value.right_position) && (right_colours == value.right_colours));
     }
     //! Inequality operator
-    bool operator !=(_code_comparison value) const{
+    bool operator !=(code_comparison value) const{
         return ((right_position != value.right_position) || (right_colours != value.right_colours));
     }
 } comp_t;
-/**< comp_t is of type struct _code_comparison */
-/*! \struct _code_comparison base_player.h "base_player.h"
+/**< comp_t is of type struct code_comparison */
+/*! \struct code_comparison base_player.h "base_player.h"
  *  \brief This is the struct used to evaluate the number of hits in the code.
  * It has two variable members representing the number of both the right positions
  * and right colors in the code.
  */
 
-typedef struct _game_state
+typedef struct game_state
 {
     //! Defines the different colors for the four positions
     code_t code;
     //! Defines the assesment of the code in light of the master-code
     comp_t assess;
     //! Constructor
-    _game_state() : code(), assess() {};
+    game_state() : code(), assess() {};
     //! Constructor overload
-    _game_state(code_t val) : code(val), assess() {};
+    game_state(code_t val) : code(val), assess() {};
 } state_t;
-/**< state_t is of type struct _game_State */
-/*! \struct _game_state base_player.h "base_player.h"
+/**< state_t is of type struct game_state */
+/*! \struct game_state base_player.h "base_player.h"
  *  \brief This is the struct used to define the state of the game at any time.
  * It has two variable members representing the code provided by the code-breaker
  * and the assess provided by the code-maker.
